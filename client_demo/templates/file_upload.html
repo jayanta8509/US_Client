@@ -1,0 +1,69 @@
+{% include "header.html" %}
+<div class="content">
+  <div class="intro-y flex items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+      
+    </h2>
+  </div>
+  <div>
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <h6 {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h6>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-8 lg:col-span-8" style="padding-left: 400px;">
+      <div class="intro-y box mt-5">
+        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+         
+            <h2 class="font-medium text-base mr-auto" style="padding-left: 180px;">
+            Form
+          </h2>
+       
+        </div>
+        <div id="vertical-form" class="p-5">
+          <div class="preview">
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+                
+                
+                
+                <div class="col-span-12 sm:col-span-4">
+                  <label for="horizontal-form-2" class="form-label">Select File Type</label>
+                  <select name="category" class="form-select" required>
+                    <option value="">Open</option>
+                    <option value="banking">Banking Documents</option>
+                    <option value="investment">Investment Account Statements</option>
+                    <option value="estate">Estate Planning Documents</option>
+                  </select>
+                </div>
+                
+                <div class="col-span-12 sm:col-span-4">
+                    <label for="vertical-form-1" class="form-label">Upload File</label>
+                    <input id="vertical-form-1" type="file" name="file" class="form-control" id="input-10"
+                      placeholder="Enter Password" required style="padding-top: 10px;">
+                  </div>
+
+                  
+              </div>
+
+
+              <div class="sm:ml-20 sm:pl-5 mt-5">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="intro-y box mt-5"> s
+      </div> -->
+    </div>
+  </div>
+</div>
+{% include "footer.html" %}

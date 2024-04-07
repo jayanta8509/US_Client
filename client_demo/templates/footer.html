@@ -1,0 +1,51 @@
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
+<script src="/static/dist/js/app.js"></script>
+<script src="/static/dist/js/jquery.min.js"></script>
+
+<script src="/static/dist/plugin/select2/select2.full.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/dataTables.bootstrap5.js"></script>
+<script src="/static/dist/plugin/datatable/js/dataTables.buttons.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/buttons.bootstrap5.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/jszip.min.js"></script>
+<script src="/static/dist/plugin/datatable/pdfmake/pdfmake.min.js"></script>
+<script src="/static/dist/plugin/datatable/pdfmake/vfs_fonts.js"></script>
+<script src="/static/dist/plugin/datatable/js/buttons.html5.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/buttons.print.min.js"></script>
+<script src="/static/dist/plugin/datatable/js/buttons.colVis.min.js"></script>
+<script src="/static/dist/plugin/datatable/dataTables.responsive.min.js"></script>
+<script src="/static/dist/js/table-data.js"></script>
+<script>
+    $(document).ready( function () {
+     $('#datatable-default').DataTable({
+        "pageLength": 10,
+        "order": [ 0, "asc" ],
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'print'],
+        "scrollX": 'true'
+     });
+
+     $('#datatable-desc').DataTable({
+        "pageLength": 10,
+        "order": [ 0, "desc" ],
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'print'],
+        "scrollX": 'true'
+     });
+  
+     $(".onlyNumber").keypress(function (e) {
+      //if the letter is not digit then display error and don't type anything
+      if (e.which != 8 && e.which != 0 && (e.which < 46 || e.which > 58 || e.which == 47)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+        return false;
+      }
+    });
+});
+</script>
+
+
+
+</body>
+</html>

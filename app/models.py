@@ -3,7 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-# class Todolist(models.Model):
-#     user = models.ForeignKey(User , on_delete=models.SET_NULL,null=True,blank=True)
-#     date = models.DateField(null=True)
-#     text = models.TextField(null=True)
+
+class Nameoffile(models.Model):
+    user_id = models.BigIntegerField(null=True)  # This field is used to store the id of the user who uploaded this
+    user_name = models.CharField(max_length= 250,null=True)
+    file_name  = models.CharField(max_length= 250,null=True)
+    image = models.FileField(null=True)
+    date = models.DateField(auto_now_add=True,null=True)
