@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">.lw { font-size: 60px; }</style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #loginForm {
+            width: 320px; /* Increased width */
+            padding: 20px 30px; /* Added padding to the right side */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: relative; /* To position the logo */
+        }
+
+        #loginForm img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px;
+            height: auto;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginForm input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #loginForm button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #loginForm button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h2 style="position: absolute; top: 20px; left: 20px;">UBS Digital Locker</h2> -->
+    <div id="loginForm">
+        <img src="https://1000logos.net/wp-content/uploads/2021/05/UBS-logo.png" alt="Logo">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+            <div {% if message.tags %}class="{{ message.tags }} alert alert-danger-soft show flex items-center mb-2 mt-2" {% endif %} role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i>{{ message }}</div>
+            {% endif %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Add authentication logic here
+            // For simplicity, let's assume the credentials are hardcoded
+            if (username === 'admin' && password === 'password') {
+                window.location.href = 'upload.html'; // Redirect to file upload page
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+    </script> -->
+
+
+<script>// Write JavaScript here</script></body>

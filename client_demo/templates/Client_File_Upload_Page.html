@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">.lw { font-size: 60px; }</style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Locker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        #fileUpload {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        label[for="fileInput"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        #categorySelect {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #uploadBtn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        #uploadBtn:hover {
+            background-color: #0056b3;
+        }
+
+        .upload-icon {
+            margin-right: 5px;
+        }
+
+        .tab-container {
+            margin-top: 20px;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .tab-btn.active {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .file-item i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-lock"></i> Digi Locker</h1>
+    </header>
+
+    <div>
+        <li>
+            <a  href="{% url 'logout' %}">
+              <center>Sign Out</center>
+            </a>
+          </li>
+    </div>
+
+    <main>
+        <div id="fileUpload">
+            <label for="fileInput"><i class="fas fa-cloud-upload-alt"></i> Choose File</label>
+            <input type="file" id="fileInput">
+            <select id="categorySelect">
+                <option value="banking">Banking Documents</option>
+                <option value="investment">Investment Account Statements</option>
+                <option value="estate">Estate Planning Documents</option>
+            </select>
+            <button id="uploadBtn" onclick="uploadFile()"><i class="fas fa-upload upload-icon"></i> Upload</button>
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn" onclick="openTab('banking')">Banking Documents</button>
+            <button class="tab-btn" onclick="openTab('investment')">Investment Account Statements</button>
+            <button class="tab-btn" onclick="openTab('estate')">Estate Planning Documents</button>
+        </div>
+
+        <div id="tabs" class="tab-container">
+            <div id="banking" class="tab active" style="display: block;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Display uploaded banking documents here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="investment" class="tab" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Display uploaded investment account statements here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="estate" class="tab" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Display uploaded estate planning documents here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+
+    </main>
+
+    <!-- <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const categorySelect = document.getElementById('categorySelect');
+            const selectedCategory = categorySelect.value;
+
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
+
+            // Create a new file item element
+            const fileItem = document.createElement('tr');
+            fileItem.classList.add('file-item');
+            fileItem.innerHTML = `
+                <td>${file.name}</td>
+                <td>${selectedCategory}</td>
+            `;
+
+            // Append the file item to the corresponding tab
+            const tab = document.getElementById(selectedCategory);
+            tab.querySelector('tbody').appendChild(fileItem);
+
+            // Clear file input after upload
+            fileInput.value = '';
+        }
+
+        function openTab(tabName) {
+            const tabs = document.getElementsByClassName('tab');
+            const tabButtons = document.getElementsByClassName('tab-btn');
+
+            // Hide all tabs and deactivate tab buttons
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+                tabButtons[i].classList.remove('active');
+            }
+
+            // Show the selected tab and activate its button
+            document.getElementById(tabName).style.display = 'block';
+            document.querySelector(`button[data-tab="${tabName}"]`).classList.add('active');
+        }
+    </script> -->
+
+
+<script>// Write JavaScript here</script></body>
